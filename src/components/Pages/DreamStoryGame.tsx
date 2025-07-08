@@ -791,20 +791,17 @@ const DreamStoryGame: React.FC<DreamStoryGameProps> = ({ onBack }) => {
         {/* Game Area */}
         <div className="flex-1 relative overflow-hidden">
           {/* Room Background */}
-          <div className={`absolute inset-0 transition-all duration-500 bg-gradient-to-br ${currentRoom.background} ${
-            isDark 
-              ? 'from-slate-800 to-slate-900' 
-              : 'from-emerald-100 to-emerald-200'
-          }`}>
-            {/* Grid pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="grid grid-cols-10 grid-rows-10 h-full w-full">
-                {Array.from({ length: 100 }).map((_, i) => (
-                  <div key={i} className={`border ${
-                    isDark ? 'border-slate-600' : 'border-emerald-300'
-                  }`}></div>
-                ))}
-              </div>
+          <div className="absolute inset-0 transition-all duration-500 overflow-hidden">
+            {/* Room-specific pixel art background */}
+            <div className={`room-background room-${currentRoom.id} w-full h-full relative`}>
+              {/* Floor tiles */}
+              <div className="absolute inset-0 floor-tiles"></div>
+              
+              {/* Walls */}
+              <div className="absolute inset-0 walls"></div>
+              
+              {/* Room decorations */}
+              <div className="absolute inset-0 decorations"></div>
             </div>
           </div>
 
@@ -833,11 +830,13 @@ const DreamStoryGame: React.FC<DreamStoryGameProps> = ({ onBack }) => {
 
           {/* Alex Character */}
           <div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
-            style={{ fontSize: '3rem' }}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 alex-character"
           >
-            <div className="text-center">
-              <div className="mb-2">{getAlexSprite()}</div>
+            <div className="text-center relative">
+              <div className={`alex-sprite alex-${alexAnimation} w-12 h-16 relative`}>
+                {/* Character shadow */}
+                <div className="character-shadow absolute bottom-0 left-1/2 transform -translate-x-1/2"></div>
+              </div>
               <div className={`text-xs font-bold px-2 py-1 rounded-full ${
                 isDark ? 'bg-slate-800 text-white' : 'bg-white text-emerald-900'
               }`}>
@@ -853,14 +852,10 @@ const DreamStoryGame: React.FC<DreamStoryGameProps> = ({ onBack }) => {
               <button
                 key={action.id}
                 onClick={() => handleActionClick(action)}
-                className={`absolute z-10 p-3 rounded-xl border-2 transition-all duration-200 hover:scale-110 ${
+                className={`absolute z-10 transition-all duration-200 hover:scale-110 interactive-object object-${action.id} ${
                   isUsed
-                    ? isDark
-                      ? 'bg-slate-700/50 border-slate-600 text-slate-500 cursor-not-allowed'
-                      : 'bg-gray-200/50 border-gray-300 text-gray-500 cursor-not-allowed'
-                    : isDark
-                      ? 'bg-slate-800/80 border-slate-600 text-white hover:bg-slate-700/80 hover:border-slate-500 cursor-pointer'
-                      : 'bg-white/80 border-emerald-300 text-emerald-700 hover:bg-emerald-50/80 hover:border-emerald-400 cursor-pointer'
+                    ? 'used cursor-not-allowed opacity-60'
+                    : 'available cursor-pointer hover:brightness-110'
                 }`}
                 style={{
                   left: `${action.position.x}%`,
@@ -869,13 +864,8 @@ const DreamStoryGame: React.FC<DreamStoryGameProps> = ({ onBack }) => {
                 }}
                 disabled={isUsed}
               >
-                <div className="flex flex-col items-center gap-1">
-                  <action.icon className="w-6 h-6" />
-                  <span className="text-xs font-medium">{action.name}</span>
-                  {isUsed && (
-                    <div className="text-xs text-green-400">✓</div>
-                  )}
-                </div>
+                {/* Pixel art object sprite will be handled by CSS */}
+                {isUsed && <div className="completion-checkmark absolute -top-2 -right-2">✓</div>}
               </button>
             );
           })}

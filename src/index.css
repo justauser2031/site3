@@ -1,3 +1,273 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Pixel Art Game Styles */
+.room-background {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Floor Tiles */
+.floor-tiles {
+  background-image: 
+    linear-gradient(45deg, #e8f5e8 25%, transparent 25%),
+    linear-gradient(-45deg, #e8f5e8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e8f5e8 75%),
+    linear-gradient(-45deg, transparent 75%, #e8f5e8 75%);
+  background-size: 32px 32px;
+  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
+  background-color: #f0f8f0;
+}
+
+/* Room-specific backgrounds */
+.room-bedroom .floor-tiles {
+  background-color: #d4c5b9;
+  background-image: 
+    linear-gradient(45deg, #c9b8a8 25%, transparent 25%),
+    linear-gradient(-45deg, #c9b8a8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #c9b8a8 75%),
+    linear-gradient(-45deg, transparent 75%, #c9b8a8 75%);
+}
+
+.room-kitchen .floor-tiles {
+  background-color: #f5f5dc;
+  background-image: 
+    linear-gradient(45deg, #e6e6cd 25%, transparent 25%),
+    linear-gradient(-45deg, #e6e6cd 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e6e6cd 75%),
+    linear-gradient(-45deg, transparent 75%, #e6e6cd 75%);
+}
+
+.room-living .floor-tiles {
+  background-color: #8b4513;
+  background-image: 
+    repeating-linear-gradient(0deg, #a0522d, #a0522d 4px, #8b4513 4px, #8b4513 32px),
+    repeating-linear-gradient(90deg, #a0522d, #a0522d 4px, transparent 4px, transparent 32px);
+}
+
+.room-gym .floor-tiles {
+  background-color: #2c3e50;
+  background-image: 
+    linear-gradient(45deg, #34495e 25%, transparent 25%),
+    linear-gradient(-45deg, #34495e 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #34495e 75%),
+    linear-gradient(-45deg, transparent 75%, #34495e 75%);
+}
+
+.room-bathroom .floor-tiles {
+  background-color: #e6f3ff;
+  background-image: 
+    linear-gradient(45deg, #cce7ff 25%, transparent 25%),
+    linear-gradient(-45deg, #cce7ff 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #cce7ff 75%),
+    linear-gradient(-45deg, transparent 75%, #cce7ff 75%);
+}
+
+/* Walls */
+.walls::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, #8b7355, #a0845c);
+  border-bottom: 4px solid #6b5b47;
+}
+
+.walls::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  background: linear-gradient(to right, #8b7355, #a0845c);
+  border-right: 4px solid #6b5b47;
+}
+
+/* Alex Character Sprites */
+.alex-character {
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.alex-sprite {
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.alex-idle {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%234a90e2'/%3E%3C!-- Arms --%3E%3Crect x='8' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='34' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23333'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-sleep {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='8' y='32' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='6' y='30' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes closed --%3E%3Crect x='10' y='36' width='4' height='1' fill='%23000'/%3E%3Crect x='18' y='36' width='4' height='1' fill='%23000'/%3E%3C!-- Body lying down --%3E%3Crect x='24' y='30' width='20' height='12' fill='%234a90e2'/%3E%3C!-- ZZZ --%3E%3Ctext x='30' y='20' font-family='monospace' font-size='8' fill='%23666'%3EZZZ%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-eat {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Mouth eating --%3E%3Crect x='22' y='18' width='4' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%234a90e2'/%3E%3C!-- Arms with food --%3E%3Crect x='8' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='34' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3C!-- Food --%3E%3Crect x='4' y='24' width='4' height='4' fill='%23ff6b35'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23333'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-exercise {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%23ff4444'/%3E%3C!-- Arms raised --%3E%3Crect x='6' y='18' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='36' y='18' width='6' height='16' fill='%23fdbcb4'/%3E%3C!-- Dumbbells --%3E%3Crect x='2' y='16' width='4' height='4' fill='%23333'/%3E%3Crect x='42' y='16' width='4' height='4' fill='%23333'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23333'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-relax {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes relaxed --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Smile --%3E%3Crect x='20' y='18' width='8' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%2366bb6a'/%3E%3C!-- Arms relaxed --%3E%3Crect x='8' y='28' width='6' height='14' fill='%23fdbcb4'/%3E%3Crect x='34' y='28' width='6' height='14' fill='%23fdbcb4'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23333'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-drinkWater {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23654321'/%3E%3C!-- Eyes --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%234a90e2'/%3E%3C!-- Arms with glass --%3E%3Crect x='8' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='34' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3C!-- Water glass --%3E%3Crect x='4' y='22' width='4' height='8' fill='%2387ceeb'/%3E%3Crect x='3' y='21' width='6' height='1' fill='%23333'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23333'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.alex-shower {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Head --%3E%3Crect x='16' y='8' width='16' height='16' fill='%23fdbcb4'/%3E%3C!-- Hair wet --%3E%3Crect x='14' y='6' width='20' height='12' fill='%23543a1a'/%3E%3C!-- Eyes --%3E%3Crect x='18' y='12' width='2' height='2' fill='%23000'/%3E%3Crect x='28' y='12' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='14' y='24' width='20' height='24' fill='%23fdbcb4'/%3E%3C!-- Arms --%3E%3Crect x='8' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='34' y='26' width='6' height='16' fill='%23fdbcb4'/%3E%3C!-- Water drops --%3E%3Crect x='12' y='4' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='18' y='2' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='28' y='4' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='34' y='2' width='2' height='2' fill='%2387ceeb'/%3E%3C!-- Legs --%3E%3Crect x='16' y='48' width='6' height='16' fill='%23fdbcb4'/%3E%3Crect x='26' y='48' width='6' height='16' fill='%23fdbcb4'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Character shadow */
+.character-shadow {
+  width: 24px;
+  height: 8px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Interactive Objects */
+.interactive-object {
+  width: 48px;
+  height: 48px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+  transition: all 0.2s ease;
+}
+
+.interactive-object:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.3)) brightness(1.1);
+}
+
+.interactive-object.used {
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)) grayscale(0.5) brightness(0.8);
+}
+
+/* Bed */
+.object-sleep {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Bed frame --%3E%3Crect x='4' y='20' width='40' height='20' fill='%238b4513'/%3E%3C!-- Mattress --%3E%3Crect x='6' y='16' width='36' height='16' fill='%23f5f5dc'/%3E%3C!-- Pillow --%3E%3Crect x='8' y='12' width='12' height='8' fill='%23ffffff'/%3E%3C!-- Blanket --%3E%3Crect x='20' y='14' width='20' height='12' fill='%234a90e2'/%3E%3C!-- Bed legs --%3E%3Crect x='6' y='36' width='4' height='8' fill='%23654321'/%3E%3Crect x='38' y='36' width='4' height='8' fill='%23654321'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Sofa */
+.object-relax {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Sofa base --%3E%3Crect x='4' y='24' width='40' height='16' fill='%236b5b95'/%3E%3C!-- Sofa back --%3E%3Crect x='4' y='12' width='40' height='16' fill='%238b7bb8'/%3E%3C!-- Cushions --%3E%3Crect x='8' y='20' width='12' height='8' fill='%23a593c2'/%3E%3Crect x='28' y='20' width='12' height='8' fill='%23a593c2'/%3E%3C!-- Armrests --%3E%3Crect x='2' y='16' width='6' height='20' fill='%236b5b95'/%3E%3Crect x='40' y='16' width='6' height='20' fill='%236b5b95'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Dining table */
+.object-eat {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Table top --%3E%3Crect x='8' y='20' width='32' height='16' fill='%23deb887'/%3E%3C!-- Table legs --%3E%3Crect x='10' y='32' width='4' height='12' fill='%238b7355'/%3E%3Crect x='34' y='32' width='4' height='12' fill='%238b7355'/%3E%3C!-- Plate --%3E%3Ccircle cx='20' cy='26' r='4' fill='%23ffffff'/%3E%3C!-- Food --%3E%3Crect x='18' y='24' width='4' height='4' fill='%23ff6b35'/%3E%3C!-- Glass --%3E%3Crect x='28' y='22' width='4' height='6' fill='%2387ceeb'/%3E%3Crect x='27' y='21' width='6' height='1' fill='%23333'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Water dispenser */
+.object-drinkWater {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Water cooler base --%3E%3Crect x='16' y='28' width='16' height='16' fill='%23e6e6e6'/%3E%3C!-- Water bottle --%3E%3Crect x='18' y='8' width='12' height='24' fill='%2387ceeb'/%3E%3C!-- Bottle cap --%3E%3Crect x='20' y='6' width='8' height='4' fill='%23333'/%3E%3C!-- Dispenser tap --%3E%3Crect x='14' y='32' width='4' height='4' fill='%23666'/%3E%3C!-- Water drops --%3E%3Crect x='12' y='36' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='10' y='38' width='2' height='2' fill='%2387ceeb'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Exercise equipment */
+.object-exercise {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Dumbbell bar --%3E%3Crect x='8' y='22' width='32' height='4' fill='%23333'/%3E%3C!-- Weights --%3E%3Crect x='4' y='18' width='8' height='12' fill='%23666'/%3E%3Crect x='36' y='18' width='8' height='12' fill='%23666'/%3E%3C!-- Weight details --%3E%3Crect x='6' y='20' width='4' height='8' fill='%23999'/%3E%3Crect x='38' y='20' width='4' height='8' fill='%23999'/%3E%3C!-- Bench --%3E%3Crect x='12' y='32' width='24' height='8' fill='%23654321'/%3E%3Crect x='14' y='36' width='4' height='8' fill='%23543a1a'/%3E%3Crect x='30' y='36' width='4' height='8' fill='%23543a1a'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Shower */
+.object-shower {
+  background-image: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Shower base --%3E%3Crect x='12' y='32' width='24' height='12' fill='%23f0f0f0'/%3E%3C!-- Shower walls --%3E%3Crect x='10' y='16' width='4' height='28' fill='%23e0e0e0'/%3E%3Crect x='34' y='16' width='4' height='28' fill='%23e0e0e0'/%3E%3C!-- Shower head --%3E%3Crect x='20' y='8' width='8' height='4' fill='%23c0c0c0'/%3E%3C!-- Water drops --%3E%3Crect x='16' y='12' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='20' y='14' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='24' y='12' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='28' y='14' width='2' height='2' fill='%2387ceeb'/%3E%3Crect x='30' y='12' width='2' height='2' fill='%2387ceeb'/%3E%3C!-- Drain --%3E%3Ccircle cx='24' cy='40' r='2' fill='%23999'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Completion checkmark */
+.completion-checkmark {
+  width: 16px;
+  height: 16px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Room decorations */
+.room-bedroom .decorations::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Window frame --%3E%3Crect x='4' y='4' width='24' height='24' fill='%23654321'/%3E%3C!-- Window glass --%3E%3Crect x='6' y='6' width='20' height='20' fill='%2387ceeb'/%3E%3C!-- Window cross --%3E%3Crect x='15' y='6' width='2' height='20' fill='%23654321'/%3E%3Crect x='6' y='15' width='20' height='2' fill='%23654321'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.room-kitchen .decorations::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Refrigerator --%3E%3Crect x='8' y='4' width='16' height='24' fill='%23f0f0f0'/%3E%3C!-- Fridge handle --%3E%3Crect x='22' y='12' width='2' height='8' fill='%23333'/%3E%3C!-- Fridge door line --%3E%3Crect x='8' y='16' width='16' height='1' fill='%23ddd'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.room-living .decorations::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- TV --%3E%3Crect x='4' y='8' width='24' height='16' fill='%23333'/%3E%3C!-- TV screen --%3E%3Crect x='6' y='10' width='20' height='12' fill='%23000'/%3E%3C!-- TV stand --%3E%3Crect x='12' y='24' width='8' height='4' fill='%23654321'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.room-gym .decorations::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Mirror --%3E%3Crect x='4' y='4' width='24' height='24' fill='%23e6f3ff'/%3E%3C!-- Mirror frame --%3E%3Crect x='2' y='2' width='28' height='28' fill='none' stroke='%23666' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.room-bathroom .decorations::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3C!-- Toilet --%3E%3Crect x='8' y='16' width='16' height='12' fill='%23ffffff'/%3E%3C!-- Toilet tank --%3E%3Crect x='10' y='8' width='12' height='12' fill='%23f0f0f0'/%3E%3C!-- Toilet seat --%3E%3Cellipse cx='16' cy='20' rx='6' ry='4' fill='%23ffffff'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Animation for character movement */
+@keyframes character-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+.alex-sprite:not(.alex-sleep) {
+  animation: character-bounce 2s ease-in-out infinite;
+}
+
+/* Hover effects for interactive objects */
+@keyframes object-glow {
+  0%, 100% { filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)) brightness(1); }
+  50% { filter: drop-shadow(2px 2px 8px rgba(16, 185, 129, 0.4)) brightness(1.2); }
+}
+
+.interactive-object.available:hover {
+  animation: object-glow 1s ease-in-out infinite;
+}
